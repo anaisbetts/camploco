@@ -6,7 +6,7 @@ class CreateTroops < ActiveRecord::Migration
       t.string :troopmaster
       t.string :troopmaster_address
       t.string :troopmaster_city
-      t.integer :troopmaster_zipcode
+      t.string :troopmaster_zipcode
       t.string :troopmaster_email
 
       t.integer :number

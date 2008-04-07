@@ -3,24 +3,55 @@
 <%= error_messages_for :troop %>
 
 <% form_for(@troop) do |f| %>
+
+  <h2>Troop Information</h2>
+
+  <p>
+    <b>Troop Number</b><br />
+    <%= f.text_field :number %>
+  </p>
+
+  <p>
+    <b>District</b><br />
+    <%= f.text_field :district %>
+  </p>
+
+  <p>
+    <b>Council</b><br />
+    <%= f.text_field :council %>
+  </p>
+
   <p>
     <b>Number</b><br />
     <%= f.text_field :number %>
   </p>
 
+  <h2>Troopmaster Information:</h2>
+
   <p>
-    <b>Troopmaster</b><br />
+    <b>Name</b><br />
     <%= f.text_field :troopmaster %>
   </p>
 
   <p>
-    <b>Email</b><br />
-    <%= f.text_field :email %>
+    <b>Email Address</b><br />
+    <%= f.text_field :troopmaster_email %>
   </p>
 
   <p>
-    <b>Identity url</b><br />
-    <%= f.text_field :identity_url %>
+    <b>Street Address</b><br />
+    <%= f.text_field :troopmaster_address %>
+  </p>
+
+  <p>
+    <b>City</b><br />
+    <%= f.text_field :troopmaster_city %>
+  </p>
+
+
+  <p>
+    <b>Zipcode </b><br />
+    <%= f.text_field :troopmaster_zipcode %>
   </p>
 
   <p>
