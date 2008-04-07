@@ -4,7 +4,7 @@ class CreateCampers < ActiveRecord::Migration
       t.string :name
       t.string :rank
       t.integer :age
-      t.bool :nicoteh
+      t.boolean :nicoteh
 
       t.timestamps
     end
