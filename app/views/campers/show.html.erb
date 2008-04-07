@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @camper.name %>
+</p>
+
+<p>
+  <b>Rank:</b>
+  <%=h @camper.rank %>
+</p>
+
+<p>
+  <b>Age:</b>
+  <%=h @camper.age %>
+</p>
+
+<p>
+  <b>Nicoteh:</b>
+  <%=h @camper.nicoteh %>
+</p>
+
+
+<%= link_to 'Edit', edit_camper_path(@camper) %> |
+<%= link_to 'Back', campers_path %>

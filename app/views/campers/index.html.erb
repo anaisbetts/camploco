@@ -1,0 +1,26 @@
+<h1>Listing campers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Rank</th>
+    <th>Age</th>
+    <th>Nicoteh</th>
+  </tr>
+
+<% for camper in @campers %>
+  <tr>
+    <td><%=h camper.name %></td>
+    <td><%=h camper.rank %></td>
+    <td><%=h camper.age %></td>
+    <td><%=h camper.nicoteh %></td>
+    <td><%= link_to 'Show', camper %></td>
+    <td><%= link_to 'Edit', edit_camper_path(camper) %></td>
+    <td><%= link_to 'Destroy', camper, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New camper', new_camper_path %>

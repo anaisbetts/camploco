@@ -1,0 +1,32 @@
+<h1>Editing troop</h1>
+
+<%= error_messages_for :troop %>
+
+<% form_for(@troop) do |f| %>
+  <p>
+    <b>Number</b><br />
+    <%= f.text_field :number %>
+  </p>
+
+  <p>
+    <b>Troopmaster</b><br />
+    <%= f.text_field :troopmaster %>
+  </p>
+
+  <p>
+    <b>Email</b><br />
+    <%= f.text_field :email %>
+  </p>
+
+  <p>
+    <b>Identity url</b><br />
+    <%= f.text_field :identity_url %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @troop %> |
+<%= link_to 'Back', troops_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  rank: MyString
+  age: 1
+  nicoteh: 
+
+two:
+  name: MyString
+  rank: MyString
+  age: 1
+  nicoteh: 
