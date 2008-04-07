@@ -1,0 +1,23 @@
+body { 
+	font-family: "Trebuchet MS", "Arial";
+	color: #333;
+}
+
+p {
+	margin: 15px;
+}
+
+hr {
+	margin: 40px;
+}
+
+#logo {
+	float: left;
+	width: 273;
+	height: 273;
+}
+
+#header {
+	margin-right: 50px;
+	text-align: right;
+}
