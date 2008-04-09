@@ -1,0 +1,25 @@
+
+<% form_for(@camper) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Rank</b><br />
+    <%= f.text_field :rank %>
+  </p>
+
+  <p>
+    <b>Age</b><br />
+    <%= f.text_field :age %>
+  </p>
+
+  <p>
+    <b>Nicoteh</b><br />
+    <%= f.text_field :nicoteh %>
+  </p>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
