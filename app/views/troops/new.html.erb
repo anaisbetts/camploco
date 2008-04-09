@@ -25,9 +25,7 @@
     <%= f.text_field :number %>
   </p>
 
-  <select>
-	  <%= options_for_select(AvailableWeeks.values, AvailableWeeks.values[0]) %>
-  </select>
+  <%= select("troop", "session_text", AvailableSessionsAsText.values) %>
 
   <h2>Troopmaster Information:</h2>
 
