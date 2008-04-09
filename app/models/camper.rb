@@ -65,4 +65,5 @@ MeritBadges = {
 }
 
 class Camper < ActiveRecord::Base
+  belongs_to :troop
 end
