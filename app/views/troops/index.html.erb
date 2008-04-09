@@ -1,22 +1,23 @@
 <h1>Listing troops</h1>
 
 <table>
-  <tr>
-    <th>Number</th>
-    <th>Troopmaster</th>
-    <th>Email</th>
-  </tr>
+	<tr>
+		<th>Number</th>
+		<th>Troopmaster</th>
+		<th>Email</th>
+	</tr>
 
-<% for troop in @troops %>
-  <tr>
-    <td><%=h troop.number %></td>
-    <td><%=h troop.troopmaster %></td>
-    <td><%=h troop.troopmaster_email %></td>
-    <td><%= link_to 'Show', troop %></td>
-    <td><%= link_to 'Edit', edit_troop_path(troop) %></td>
-    <td><%= link_to 'Destroy', troop, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<% for troop in @troops %>
+	<tr>
+		<td><%=h troop.number %></td>
+		<td><%=h troop.troopmaster %></td>
+		<td><%=h troop.troopmaster_email %></td>
+		<td><%= link_to 'Show', troop %></td>
+		<td><%= link_to 'Edit', edit_troop_path(troop) %></td>
+		<td><%= link_to 'Destroy', troop, :confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+	<% end %>
+
 </table>
 
 <br />

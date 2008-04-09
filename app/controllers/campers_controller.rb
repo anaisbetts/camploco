@@ -2,7 +2,7 @@ class CampersController < ApplicationController
   # GET /campers
   # GET /campers.xml
   def index
-    @campers = Camper.find(:all)
+    @campers = Camper.find(:all, :conditions => params[:troop_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -52,6 +52,8 @@ class CampersController < ApplicationController
         format.xml  { render :xml => @camper.errors, :status => :unprocessable_entity }
       end
     end
+
+    @camper.troop_id = params[:troop_id]
   end
 
   # PUT /campers/1

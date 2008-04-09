@@ -1,3 +1,8 @@
+<% @troop.campers.each do |x| %>
+	<p><%= x.name %></p>
+<% end %>
+
+<%= debug(@troop) %>
 
 <%= link_to 'Edit', edit_troop_path(@troop) %> |
 <%= link_to 'Back', troops_path %>
