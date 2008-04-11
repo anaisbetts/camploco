@@ -29,6 +29,10 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
+  # OpenID routes
+  map.open_id_complete 'session', :controller => "sessions", :action => "create", :requirements => { :method => :get }                                          
+  map.resource :session
+
   map.resources :troops, :has_many => [ :campers ]
 
   # Install the default routes as the lowest priority.
