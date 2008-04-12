@@ -1,0 +1,197 @@
+.mootable_container{
+	display: block;
+	height: 100px;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid #cccccc;
+	padding-bottom: 2px;
+}
+.mootable{
+	display: block;
+	position: absolute;
+	width: 100%;
+}
+.mootable .thead{
+	display: block;
+	position: relative;
+	height: 1.2em;
+	z-index: 2;
+	background: #f3f3f3;
+	border-bottom: 2px solid #cccccc;
+}
+.mootable .thead .tr{
+	display: block;
+	position: relative;
+	width: auto;
+}
+.mootable .thead .tr .th{
+	display: block;
+	float: left;
+	font-weight: bold;
+	position: relative;
+	overflow: hidden;
+	padding: 0px 2px;
+	width: 100px;
+	height: 1.2em;
+	border-right: 1px solid #cccccc;
+	border-bottom: 2px solid #cccccc;
+}
+.mootable .thead .tr .th .resize{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 2;
+	height: 1.2em;
+	width: 4px;
+	cursor: e-resize;
+}
+.mootable .thead .tr .sorted_asc{
+	text-indent: 9px;
+	background: url(img/arrow_down.gif) 2px 50% no-repeat;
+}
+.mootable .thead .tr .sorted_desc{
+	text-indent: 9px;
+	background: url(img/arrow_up.gif) 2px 50% no-repeat;
+}
+.mootable .thead.dragging .tr .th.sortable.mouseover{
+	background-color: transparent;
+	border-bottom: 2px solid #cccccc;
+	cursor: pointer;
+}
+.mootable .thead .tr .th.sortable.mouseover,
+.mootable .thead.dragging .tr .th.dragging{
+	background-color: #fff;
+	cursor: pointer;
+	border-bottom: 2px solid orange;
+}
+.mootable .tbody{
+	display: block;
+	position: absolute;
+	top: 1.2em;
+	width: 100%;
+	overflow: auto;
+}
+.mootable .tbody table{
+	
+	position: relative;
+	visibility: visible;
+	top: 0px;
+	left: 0px;
+	z-index: 3;
+}
+.mootable .tbody .loading{
+	background: #777777 url(img/loading.gif) center center no-repeat;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	display: none;
+	z-index: 4;
+}
+.mootable .tbody tr{
+	visibility: visible;
+	border-bottom: 1px solid #f3f3f3;
+}
+.mootable .tbody tr.odd:hover td,
+.mootable .tbody tr.even:hover td{
+	background: #FEFFBF;
+}
+.mootable .tbody tr:hover td div div.fade{
+	background: url(img/fade_feffbf.png) top right repeat-y;
+}
+.mootable .tbody tr.odd td{
+	background: #f6f6f6;
+}
+.mootable .tbody tr.even td{
+	background: #ffffff;
+}
+.mootable .tbody .tr .td{
+	display: block;
+	position: relative;
+	float: left;
+	padding: 2px 2px;
+	width: 100px;
+	border-right: 1px solid #f3f3f3;
+}
+.mootable .tbody table tr td{
+	visibility: visible;
+	border-right: 1px solid #f3f3f3;
+	position: relative;
+	overflow: hidden;
+	padding: 2px;
+	height: 1.2em;
+}
+.mootable .tbody table tr td div{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	padding: 0px;
+}
+.mootable .tbody table tr td div span{
+	position: absolute;
+	white-space: nowrap;
+	display: block;
+	top: 0px;
+	left: 0px;
+	padding: 0px;
+}
+.mootable tbody tr td div.fade{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 4;
+	padding: 2px 0px;
+	width: 9px;
+	height: 1.2em;
+}
+tr.even td div.fade{
+	background: url(img/fade_ffffff.png) top right repeat-y;
+}
+tr.odd td div.fade{
+	background: url(img/fade_f6f6f6.png) top right repeat-y;
+}
+.mootable th, .mootable table tr td,
+.mootable .th, .mootable td{
+}
+.mootable tfoot,
+.mootable .tfoot{
+	display: none;
+}
+.mootable .displayTrigger{
+	width: 18px;
+	height: 1.2em;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 4;
+	background: #f3f3f3 url(img/cols.gif) center center no-repeat;
+}
+.mootable .displayOptions{
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	z-index: 5;
+	padding: 2px;
+	border: 1px solid #cccccc;
+	background: #f3f3f3;
+	display: none;
+}
+.mootable .displayOptions form{
+	margin: 0px;
+	padding: 0px;
+}
+.mootable_container .resizehandle{
+	position: absolute;
+	height: 1px;
+	width: 100%;
+	bottom: -1px;
+	z-index: 2;
+	cursor: n-resize;
+	border-bottom: 1px solid #cccccc;
+	border-top: 3px double #cccccc;
+	background-color: #ffffff;
+}
+.mootable .thead .tr .th.hide,
+.mootable .tbody tr td.hide{
+	display: none;
+}

@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
 
   def open_id_authentication
     authenticate_with_open_id do |result, identity_url|
-      debugger
       if result.successful?
         if @current_user = User.find_by_identity_url(identity_url)
           successful_login

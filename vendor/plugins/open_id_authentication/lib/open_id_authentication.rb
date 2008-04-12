@@ -94,6 +94,7 @@ module OpenIdAuthentication
       return_to = options.delete(:return_to)
       open_id_request = open_id_consumer.begin(identity_url)
       add_simple_registration_fields(open_id_request, options)
+      debugger
       redirect_to(open_id_redirect_url(open_id_request, return_to))
     rescue OpenID::OpenIDError, Timeout::Error => e
       logger.error("[OPENID] #{e}")
