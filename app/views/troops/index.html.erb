@@ -1,6 +1,6 @@
-<h1>Listing troops</h1>
+<h1>Registered Troops</h1>
 
-<table>
+<table id="data" class="sortable resizable">
 	<tr>
 		<th>Number</th>
 		<th>Troopmaster</th>
@@ -19,6 +19,14 @@
 	<% end %>
 
 </table>
+
+<script language="javascript">
+<!--
+
+TableKit.Sortable.init("data");
+
+-->
+</script>
 
 <br />
 

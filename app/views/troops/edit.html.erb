@@ -1,8 +1,7 @@
-<h1>Editing troop</h1>
+<h1>Editing troop <%= h @troop.number %></h1>
 
 <%= error_messages_for :troop %>
 
 <%= render :partial => 'troop_form' %>
 
-<%= link_to 'Show', @troop %> |
-<%= link_to 'Back', troops_path %>
+<%= link_to 'Back to Troop List', troops_path %>

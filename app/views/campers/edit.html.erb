@@ -1,8 +1,7 @@
-<h1>Editing camper</h1>
+<h1>Information for <%= h(@camper.name) %></h1>
 
 <%= error_messages_for :camper %>
 
 <% render :partial => 'camper_form' %>
 
-<%= link_to 'Show', @camper %> |
-<%= link_to 'Back', campers_path %>
+<%= link_to 'Back to troop...', campers_path %>

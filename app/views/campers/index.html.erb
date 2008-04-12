@@ -1,6 +1,6 @@
-<h1>Listing campers</h1>
+<h1>Campers for Troop <%= h @troop.number %></h1>
 
-<table>
+<table id="data">
   <tr>
     <th>Name</th>
     <th>Rank</th>
@@ -21,8 +21,8 @@
 <% end %>
 </table>
 
-<p>
-<%= debug(self) %>
-</p>
+<script>
+new MooTable('data', null);
+</script>
 
 <br />
