@@ -53,6 +53,11 @@ module Ardes#:nodoc:
           format.html # index.rhtml
           format.js
           format.xml  { render :xml => resources }
+          format.csv do 
+            send_data resources.to_csv,
+              :type => 'text/csv; charset=iso-8859-1; header=present',
+              :disposition => "attachment; filename=#{self.resources[0].class.to_s}.csv"
+          end
         end
       end
 

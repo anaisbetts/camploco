@@ -1,4 +1,4 @@
-MeritBadgeText = {
+MeritBadges = {
   "Monday & Tuesday (9:00 to 10:45)" => {
     "Archery" => [],
     "Astronomy" => [],
@@ -66,6 +66,22 @@ MeritBadgeText = {
 
 NullText = "(None)"
 
+def index_from_entries
+  ret = {}
+
+  MeritBadges.keys.each_with_index do |slot,slot_index|
+    subkey = {}
+    MeritBadges[slot].keys.each_with_index do |item, index|
+      subkey[index] = [slot, item]
+    end
+    ret[slot_index] = subkey
+  end
+
+  ret
+end
+
+MeritBadgeIndex = index_from_entries
+
 class Camper < ActiveRecord::Base
   belongs_to :troop
 
@@ -74,10 +90,37 @@ class Camper < ActiveRecord::Base
   validates_numericality_of :rank, :greater_than => 0
 
   def merit_badge_slot_names
-    MeritBadgeText.keys
+    MeritBadges.keys
   end
 
   def merit_badge_entries(slot)
-    MeritBadgeText[slot].keys 
+    MeritBadges[slot].keys.unshift NullText
+  end
+
+  def meritbadge(x)
+    return self.meritbadge1 if x == 0
+    return self.meritbadge2 if x == 1
+    return self.meritbadge3 if x == 2
+    return self.meritbadge4 if x == 3
+    return nil
+  end
+
+  def current_disabled_list_for(slot)
+    return [] unless (current_val = meritbadge(slot))
+
+    slot_name, item_name = MeritBadgeIndex[slot][current_val]
+    MeritBadges[slot_name][item_name]
+  end
+
+  def slot_enabled?(slot_number)
+    return false if slot_number < 0
+    return true if slot_number == 0
+
+    0.upto(slot_number-1) do |x|
+      next unless meritbadge(x)
+      return false if current_disabled_list_for(x).include? slot_number
+    end
+
+    true
   end
 end
