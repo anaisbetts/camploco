@@ -1,5 +1,5 @@
 MeritBadges = {
-  "Monday & Tuesday (9:00 to 10:45)" => {
+   0 => {
     "Archery" => [],
     "Astronomy" => [],
     "Aviation" => [],
@@ -18,7 +18,7 @@ MeritBadges = {
     "System Management" => [3]
   }, 
 
-  "Monday & Tuesday (11:00 to 12:45)" => {
+  1 => {
     "Archery" => [],
     "Camping" => [],
     "Creature Studies" => [4],
@@ -33,7 +33,7 @@ MeritBadges = {
     "Woodcarving" => []
   }, 
 
-  "Thursday & Friday (9:00 to 10:45)" => {
+  2 => {
     "Archery" => [],
     "Basketry" => [],
     "Camping" => [],
@@ -50,7 +50,7 @@ MeritBadges = {
     "Swimming" => []
   }, 
 
-  "Thursday & Friday (11:00 to 12:45)" => {
+  3 => {
     "Archery" => [],
     "Canoeing" => [],
     "Hiking and Backpacking" => [],
@@ -64,23 +64,12 @@ MeritBadges = {
   }
 }
 
-NullText = "(None)"
-
-def index_from_entries
-  ret = {}
-
-  MeritBadges.keys.each_with_index do |slot,slot_index|
-    subkey = {}
-    MeritBadges[slot].keys.each_with_index do |item, index|
-      subkey[index] = [slot, item]
-    end
-    ret[slot_index] = subkey
-  end
-
-  ret
-end
-
-MeritBadgeIndex = index_from_entries
+MeritBadgeSessionNames = {
+  0 => "Monday & Tuesday (9:00 to 10:45)",
+  1 => "Monday & Tuesday (11:00 to 12:45)", 
+  2 => "Thursday & Friday (9:00 to 10:45)", 
+  3 => "Thursday & Friday (11:00 to 12:45)"
+}
 
 class Camper < ActiveRecord::Base
   belongs_to :troop
@@ -89,12 +78,12 @@ class Camper < ActiveRecord::Base
   validates_numericality_of :age, :greater_than => 0
   validates_numericality_of :rank, :greater_than => 0
 
-  def merit_badge_slot_names
-    MeritBadges.keys
+  def self.merit_badge_slot_names
+    (0..3).map {|x| MeritBadgeSessionNames[x]}
   end
 
-  def merit_badge_entries(slot)
-    MeritBadges[slot].keys.unshift NullText
+  def self.merit_badge_entries(slot)
+    MeritBadges[slot].keys.sort
   end
 
   def meritbadge(x)
@@ -105,6 +94,30 @@ class Camper < ActiveRecord::Base
     return nil
   end
 
+  def meritbadge1_text
+  end
+
+  def meritbadge2_text
+  end
+
+  def meritbadge3_text
+  end
+
+  def meritbadge4_text
+  end
+
+  def meritbadge1_text=(x)
+  end
+
+  def meritbadge2_text=(x)
+  end
+
+  def meritbadge3_text=(x)
+  end
+
+  def meritbadge4_text=(x)
+  end
+  
   def current_disabled_list_for(slot)
     return [] unless (current_val = meritbadge(slot))
 

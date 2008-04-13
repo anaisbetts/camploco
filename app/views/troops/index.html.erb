@@ -12,8 +12,9 @@
 		<td><%=h troop.number %></td>
 		<td><%=h troop.troopmaster %></td>
 		<td><%=h troop.troopmaster_email %></td>
-		<td><%= link_to 'Show', resource_path(troop) %></td>
+		<td><%= link_to 'Show Report', resource_path(troop) %></td>
 		<td><%= link_to 'Edit', edit_resource_path(troop) %></td>
+		<td><%= link_to 'Campers...', resource_path(troop.campers) %></td>
 		<td><%= link_to 'Delete', resource_path(troop), :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	<% end %>

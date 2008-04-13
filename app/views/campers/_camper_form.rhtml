@@ -19,7 +19,18 @@
     <%= f.check_box :nicoteh %>
   </p>
 
+  <p><br/><br/></p>
+
+  <% 0.upto 3 do |s| %>
+
+  	<h3>Session <%= s+1 %>: <%= Camper.merit_badge_slot_names[s] %></h3>
+
+  	<%= select("camper", "meritbadge#{s+1}_text", Camper.merit_badge_entries(s)) %>
+
+  <% end %>
+
   <p>
     <%= f.submit "Create" %>
   </p>
 <% end %>
+

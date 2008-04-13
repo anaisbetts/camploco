@@ -13,7 +13,7 @@
     <td><%=h camper.name %></td>
     <td><%=h camper.rank %></td>
     <td><%=h camper.age %></td>
-    <td><%=h camper.nicoteh %></td>
+    <td><%=h(camper.nicoteh ? "Yes" : "No") %></td>
     <td><%= link_to 'Show', resource_path(camper) %></td>
     <td><%= link_to 'Edit', edit_resource_path(camper) %></td>
     <td><%= link_to 'Delete', resource_path(camper), :confirm => 'Are you sure?', :method => :delete %></td>

@@ -16,11 +16,6 @@
     <%= f.text_field :council %>
   </p>
 
-  <p>
-    <b>Number</b><br />
-    <%= f.text_field :number %>
-  </p>
-
   <%= select("troop", "session_text", AvailableSessionsAsText.values) %>
 
   <h2>Troopmaster Information:</h2>
@@ -44,7 +39,6 @@
     <b>City</b><br />
     <%= f.text_field :troopmaster_city %>
   </p>
-
 
   <p>
     <b>Zipcode </b><br />
