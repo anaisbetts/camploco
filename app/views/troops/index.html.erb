@@ -12,22 +12,16 @@
 		<td><%=h troop.number %></td>
 		<td><%=h troop.troopmaster %></td>
 		<td><%=h troop.troopmaster_email %></td>
-		<td><%= link_to 'Show', troop %></td>
-		<td><%= link_to 'Edit', edit_troop_path(troop) %></td>
-		<td><%= link_to 'Destroy', troop, :confirm => 'Are you sure?', :method => :delete %></td>
+		<td><%= link_to 'Show', resource_path(troop) %></td>
+		<td><%= link_to 'Edit', edit_resource_path(troop) %></td>
+		<td><%= link_to 'Destroy', resource_path(troop), :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	<% end %>
 
 </table>
 
-<script language="javascript">
-<!--
-
-TableKit.Sortable.init("data");
-
--->
-</script>
+<script language="javascript"> TableKit.Sortable.init("data"); </script>
 
 <br />
 
-<%= link_to 'New troop', new_troop_path %>
+<%= link_to 'New troop', new_resource_path %>

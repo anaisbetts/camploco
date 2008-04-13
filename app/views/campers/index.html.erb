@@ -1,6 +1,6 @@
 <h1>Campers for Troop <%= h @troop.number %></h1>
 
-<table id="data">
+<table id="data" class="sortable resizable">
   <tr>
     <th>Name</th>
     <th>Rank</th>
@@ -14,15 +14,15 @@
     <td><%=h camper.rank %></td>
     <td><%=h camper.age %></td>
     <td><%=h camper.nicoteh %></td>
-    <td><%= link_to 'Show', camper %></td>
-    <td><%= link_to 'Edit', edit_camper_path(camper) %></td>
-    <td><%= link_to 'Destroy', camper, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', resource_path(camper) %></td>
+    <td><%= link_to 'Edit', edit_resource_path(camper) %></td>
+    <td><%= link_to 'Destroy', resource_path(camper), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<script>
-new MooTable('data', null);
-</script>
+<script language="javascript"> TableKit.Sortable.init("data"); </script>
 
 <br />
+
+<%= link_to 'Add a camper', new_resource_path %>

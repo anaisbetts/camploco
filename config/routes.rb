@@ -1,8 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :users
-
-  map.resource :session
-
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -35,11 +31,12 @@ ActionController::Routing::Routes.draw do |map|
 
   # OpenID routes
   map.open_id_complete 'session', :controller => "sessions", :action => "create", :requirements => { :method => :get }                                          
-  map.resource :session
 
-  map.resources :troops, :has_many => [ :campers ]
+  map.resources :troops do |troop|
+    troop.resources :campers
+  end
 
   # Install the default routes as the lowest priority.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end
