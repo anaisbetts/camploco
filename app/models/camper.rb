@@ -1,4 +1,4 @@
-MeritBadges = {
+MeritBadgeText = {
   "Monday & Tuesday (9:00 to 10:45)" => {
     "Archery" => [],
     "Astronomy" => [],
@@ -64,6 +64,20 @@ MeritBadges = {
   }
 }
 
+NullText = "(None)"
+
 class Camper < ActiveRecord::Base
   belongs_to :troop
+
+  validates_presence_of :name
+  validates_numericality_of :age, :greater_than => 0
+  validates_numericality_of :rank, :greater_than => 0
+
+  def merit_badge_slot_names
+    MeritBadgeText.keys
+  end
+
+  def merit_badge_entries(slot)
+    MeritBadgeText[slot].keys 
+  end
 end
