@@ -26,11 +26,11 @@ class Troop < ActiveRecord::Base
   validates_numericality_of :number, :greater_than => 0
   validates_presence_of :district
   validates_presence_of :council
-  #validates_presence_of :session
+  validates_presence_of :session
 
   def session_text=(v)
     ret = AvailableSessionsAsText.keys.find {|x| (AvailableSessionsAsText[x] == v) and x }
-    session = ret
+    self.session = ret
   end
 
   def session_text
