@@ -1,0 +1,20 @@
+<h2>Sign in with OpenID</h2>
+<%%= render :partial => "<%= controller_file_name %>/open_id_form" %>
+
+<p>If you don't already have an OpenID account you can easily create one at <%%= link_to 'MyOpenID', 'http://www.myopenid.com' -%>.</p>
+
+<h2>Or use your login/password</h2>
+<%% form_tag <%= controller_singular_name %>_path do -%>
+  <p><label for="login">Login</label><br/>
+  <%%= text_field_tag 'login' %></p>
+
+  <p><label for="password">Password</label><br/>
+  <%%= password_field_tag 'password' %></p>
+
+  <!-- Uncomment this if you want this functionality
+  <p><label for="remember_me">Remember me:</label>
+  <%%= check_box_tag 'remember_me' %></p>
+  -->
+
+  <p><%%= submit_tag 'Log in' %></p>
+<%% end -%>

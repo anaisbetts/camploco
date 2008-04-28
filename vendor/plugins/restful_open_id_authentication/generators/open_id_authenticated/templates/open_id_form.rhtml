@@ -1,0 +1,14 @@
+<%% form_tag begin_<%= controller_singular_name %>_path do -%>
+  <p>
+    <label>
+      Identity URL:
+      <%%= text_field_tag :open_id_url, nil, :style => 'width:250px' %>
+    </label>
+    <%%= submit_tag :Verify %>
+  </p>
+  <!-- Uncomment this if you want this functionality
+  <p><label for="remember_me">Remember me:</label>
+  <%%= check_box_tag 'remember_me' %></p>
+  -->
+  
+<%% end -%>
