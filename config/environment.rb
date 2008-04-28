@@ -41,6 +41,11 @@ Rails::Initializer.run do |config|
     :secret      => 'a78f5e229cc773a69f484b238104fa6e09f42eb4065d02e906ea9b2a28d9070726f0254a6f063ee2342003a7d6bf68c1bba148c6a1decc0768f26c06b9d09440'
   }
 
+  # XXX: This is to fix a retarded bug; session is the new fish
+  Inflector.inflections do |inflect|
+       inflect.irregular 'session', 'session'
+  end
+
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with 'rake db:sessions:create')
