@@ -2,7 +2,12 @@
   <p>
     <label>
       Identity URL:
-      <%= text_field_tag :open_id_url, nil, :style => 'width:250px' %>
+      <%= text_field_tag :open_id_url, nil, :style => 'width:250px', :id => 'openid_identifier' %>
+
+      <!-- BEGIN ID SELECTOR -->
+      <script type="text/javascript" id="__openidselector" src="https://www.idselector.com/selector/60f33e0693fc33d40644b940aca8b13d62e021c7" charset="utf-8"></script>
+      <!-- END ID SELECTOR -->
+
     </label>
     <%= submit_tag :Verify %>
   </p>
