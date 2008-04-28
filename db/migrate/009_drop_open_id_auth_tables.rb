@@ -1,4 +1,4 @@
-class DropAuthenticationTables < ActiveRecord::Migration
+class DropOpenIdAuthTables < ActiveRecord::Migration
   def self.down
     create_table :open_id_authentication_associations, :force => true do |t|
       t.integer :issued, :lifetime

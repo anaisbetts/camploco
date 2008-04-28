@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 7) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "campers", :force => true do |t|
     t.string   "name"
@@ -25,21 +25,6 @@ ActiveRecord::Schema.define(:version => 7) do
     t.integer  "meritbadge4"
   end
 
-  create_table "open_id_authentication_associations", :force => true do |t|
-    t.integer "issued"
-    t.integer "lifetime"
-    t.string  "handle"
-    t.string  "assoc_type"
-    t.binary  "server_url"
-    t.binary  "secret"
-  end
-
-  create_table "open_id_authentication_nonces", :force => true do |t|
-    t.integer "timestamp",  :null => false
-    t.string  "server_url"
-    t.string  "salt",       :null => false
-  end
-
   create_table "troops", :force => true do |t|
     t.string   "identity_url"
     t.string   "troopmaster"
@@ -53,12 +38,6 @@ ActiveRecord::Schema.define(:version => 7) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "session"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "identity_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end
