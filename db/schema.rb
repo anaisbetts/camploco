@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "troop_id"
-    t.integer  "meritbadge1"
-    t.integer  "meritbadge2"
-    t.integer  "meritbadge3"
-    t.integer  "meritbadge4"
+    t.string   "meritbadge0"
+    t.string   "meritbadge1"
+    t.string   "meritbadge2"
+    t.string   "meritbadge3"
   end
 
   create_table "open_id_associations", :force => true do |t|
