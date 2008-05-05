@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 10) do
+ActiveRecord::Schema.define(:version => 11) do
 
   create_table "campers", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "session"
+    t.string   "troopmaster_state"
   end
 
   create_table "users", :force => true do |t|
