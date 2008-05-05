@@ -21,6 +21,7 @@ class Troop < ActiveRecord::Base
   validates_presence_of :troopmaster
   validates_presence_of :troopmaster_address
   validates_presence_of :troopmaster_city
+  validates_presence_of :troopmaster_state
   validates_format_of :troopmaster_zipcode, :with => ZipcodeRegex
   validates_presence_of :troopmaster_email#, :with => EmailRegex
   validates_numericality_of :number, :greater_than => 0
