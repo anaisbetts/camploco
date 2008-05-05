@@ -71,6 +71,8 @@ MeritBadgeSessionNames = {
   3 => "Thursday & Friday (11:00 to 12:45)"
 }
 
+NoneText = "(None)"
+
 class Camper < ActiveRecord::Base
   belongs_to :troop
 
@@ -80,8 +82,14 @@ class Camper < ActiveRecord::Base
   validates_presence_of :nicoteh
   validates_numericality_of :troop_id, :greater_than => 0
 
-  validates_each :meritbadge1, :meritbadge2, :meritbadge3, :meritbadge4 do |record, attr, value|
+  validates_each :meritbadge0, :meritbadge1, :meritbadge2, :meritbadge3 do |record, attr, value|
+    i = Camper.index_from_name(attr)
+    
+    unless value and slot_enabled?(i)
+      record.errors.add "Session #{i+1} is already taken because of your selection on Session #{disabling_slot_number(i)}" 
+    end
 
+    record.errors.add "Session 1 isn't filled" if i == 0 and value == nil
   end
 
   def self.merit_badge_slot_names
@@ -89,57 +97,83 @@ class Camper < ActiveRecord::Base
   end
 
   def self.merit_badge_entries(slot)
-    ['(None)'] + MeritBadges[slot].keys.sort
+    [NoneText] + MeritBadges[slot].keys.sort
   end
 
-  def meritbadge(x)
-    return self.meritbadge1 if x == 0
-    return self.meritbadge2 if x == 1
-    return self.meritbadge3 if x == 2
-    return self.meritbadge4 if x == 3
-    return nil
-  end
-
-  def meritbadge1_text
-  end
-
-  def meritbadge2_text
-  end
-
-  def meritbadge3_text
-  end
-
-  def meritbadge4_text
-  end
-
-  def meritbadge1_text=(x)
-  end
-
-  def meritbadge2_text=(x)
-  end
-
-  def meritbadge3_text=(x)
-  end
-
-  def meritbadge4_text=(x)
+  def self.index_from_name(name)
+    # FIXME: This is ugly but I don't care
+    return nil unless name =~ /^meritbadge[0-9]$/
+    name[10] - '0'[0]
   end
   
   def current_disabled_list_for(slot)
     return [] unless (current_val = meritbadge(slot))
 
-    slot_name, item_name = MeritBadgeIndex[slot][current_val]
-    MeritBadges[slot_name][item_name]
+    MeritBadges[slot][current_val]
   end
 
-  def slot_enabled?(slot_number)
-    return false if slot_number < 0
-    return true if slot_number == 0
+  def disabling_slot_number(slot_number)
+    return 0 if slot_number < 0
+    return nil if slot_number == 0
 
     0.upto(slot_number-1) do |x|
       next unless meritbadge(x)
-      return false if current_disabled_list_for(x).include? slot_number
+      return x if current_disabled_list_for(x).include? slot_number
     end
-
-    true
+    return nil
   end
+
+  def slot_enabled?(slot_number)
+    not disabling_slot_number(slot_number)
+  end
+
+
+  #
+  # Boring code ahead
+  #
+
+  def meritbadge(x)
+    # FIXME: There's _definitely_ a less retarded way to do this
+    return self.meritbadge0 if x == 0
+    return self.meritbadge1 if x == 1
+    return self.meritbadge2 if x == 2
+    return self.meritbadge3 if x == 3
+    return nil
+  end
+
+  # FIXME: There's probably a clever metaprogramming way to do this
+  # Map nil <=> '(None)'
+
+  def meritbadge0_text
+    self.meritbadge0 || NoneText
+  end
+
+  def meritbadge1_text
+    self.meritbadge1 || NoneText
+  end
+
+  def meritbadge2_text
+    self.meritbadge2 || NoneText
+  end
+
+  def meritbadge3_text
+    self.meritbadge3 || NoneText
+  end
+
+  def meritbadge0_text=(x)
+    self.meritbadge0 = (x != NoneText ? x : nil)
+  end
+
+  def meritbadge1_text=(x)
+    self.meritbadge1 = (x != NoneText ? x : nil)
+  end
+
+  def meritbadge2_text=(x)
+    self.meritbadge2 = (x != NoneText ? x : nil)
+  end
+
+  def meritbadge3_text=(x)
+    self.meritbadge3 = (x != NoneText ? x : nil)
+  end
+
 end
