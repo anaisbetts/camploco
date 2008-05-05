@@ -77,13 +77,19 @@ class Camper < ActiveRecord::Base
   validates_presence_of :name
   validates_numericality_of :age, :greater_than => 0
   validates_numericality_of :rank, :greater_than => 0
+  validates_presence_of :nicoteh
+  validates_numericality_of :troop_id, :greater_than => 0
+
+  validates_each :meritbadge1, :meritbadge2, :meritbadge3, :meritbadge4 do |record, attr, value|
+
+  end
 
   def self.merit_badge_slot_names
     (0..3).map {|x| MeritBadgeSessionNames[x]}
   end
 
   def self.merit_badge_entries(slot)
-    MeritBadges[slot].keys.sort
+    ['(None)'] + MeritBadges[slot].keys.sort
   end
 
   def meritbadge(x)
