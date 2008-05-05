@@ -4,26 +4,26 @@ MeritBadges = {
     "Astronomy" => [],
     "Aviation" => [],
     "Basketry" => [],
-    "BSA Lifeguard" => [2,3,4],
+    "BSA Lifeguard" => [1,2,3],
     "Canoeing" => [],
-    "COPE" => [2],
+    "COPE" => [1],
     "Emergency Prep" => [],
     "Leatherwork" => [],
     "Lifesaving" => [],
-    "Nicoteh" => [2,3],
-    "Pioneering" => [2],
+    "Nicoteh" => [1,2],
+    "Pioneering" => [1],
     "Rifle" => [],
     "Small Boat Sailing" => [],
     "Swimming" => [],
-    "System Management" => [3]
+    "System Management" => [2]
   }, 
 
   1 => {
     "Archery" => [],
     "Camping" => [],
-    "Creature Studies" => [4],
+    "Creature Studies" => [3],
     "Environmental Science" => [],
-    "First Aid" => [4],
+    "First Aid" => [3],
     "Leatherwork" => [],
     "Lifesaving" => [],
     "Photojournalism" => [],
@@ -44,7 +44,7 @@ MeritBadges = {
     "Environmental Science" => [],
     "Indian Lore" => [],
     "Lifesaving" => [],
-    "Orienteering" => [4],
+    "Orienteering" => [3],
     "Rifle" => [],
     "Rowing" => [],
     "Swimming" => []
@@ -79,17 +79,17 @@ class Camper < ActiveRecord::Base
   validates_presence_of :name
   validates_numericality_of :age, :greater_than => 0
   validates_numericality_of :rank, :greater_than => 0
-  validates_presence_of :nicoteh
   validates_numericality_of :troop_id, :greater_than => 0
 
   validates_each :meritbadge0, :meritbadge1, :meritbadge2, :meritbadge3 do |record, attr, value|
-    i = Camper.index_from_name(attr)
+    i = nil
+    throw "Attribute is invalid" unless (i = Camper.index_from_name(attr.to_s))
     
-    unless value and slot_enabled?(i)
-      record.errors.add "Session #{i+1} is already taken because of your selection on Session #{disabling_slot_number(i)}" 
+    if value and not record.slot_enabled?(i)
+      record.errors.add "Session #{i+1} is already taken because of your selection on Session #{record.disabling_slot_number(i)+1} - "
     end
 
-    record.errors.add "Session 1 isn't filled" if i == 0 and value == nil
+    record.errors.add "Session 1 isn't filled - " if i == 0 and not value
   end
 
   def self.merit_badge_slot_names
@@ -107,6 +107,7 @@ class Camper < ActiveRecord::Base
   end
   
   def current_disabled_list_for(slot)
+    current_val = nil
     return [] unless (current_val = meritbadge(slot))
 
     MeritBadges[slot][current_val]
@@ -117,14 +118,15 @@ class Camper < ActiveRecord::Base
     return nil if slot_number == 0
 
     0.upto(slot_number-1) do |x|
-      next unless meritbadge(x)
-      return x if current_disabled_list_for(x).include? slot_number
+      return x if current_disabled_list_for(x).include?(slot_number)
     end
+
     return nil
   end
 
   def slot_enabled?(slot_number)
-    not disabling_slot_number(slot_number)
+    ret = (disabling_slot_number(slot_number) == nil)
+    return ret
   end
 
 
@@ -138,6 +140,16 @@ class Camper < ActiveRecord::Base
     return self.meritbadge1 if x == 1
     return self.meritbadge2 if x == 2
     return self.meritbadge3 if x == 3
+    return nil
+  end
+
+
+  def meritbadge_text(x)
+    # FIXME: There's _definitely_ a less retarded way to do this
+    return self.meritbadge0_text if x == 0
+    return self.meritbadge1_text if x == 1
+    return self.meritbadge2_text if x == 2
+    return self.meritbadge3_text if x == 3
     return nil
   end
 

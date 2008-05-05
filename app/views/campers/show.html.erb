@@ -18,5 +18,15 @@
   <%=h @camper.nicoteh %>
 </p>
 
+<p>
+
+  <% 0.upto 3 do |s| %>
+  <p>
+  	<b>Session <%= s+1 %>: </b>  <%=h @camper.meritbadge_text(s) %>
+  </p>
+  <% end %>
+
+</p>
+
 <%= link_to 'Edit', edit_resource_path %> |
 <%= link_to 'Back', resources_path %>
