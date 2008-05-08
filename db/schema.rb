@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 12) do
 
   create_table "campers", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(:version => 11) do
     t.string   "meritbadge1"
     t.string   "meritbadge2"
     t.string   "meritbadge3"
+  end
+
+  create_table "counselors", :force => true do |t|
+    t.string   "name"
+    t.string   "merit_badge"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "open_id_associations", :force => true do |t|

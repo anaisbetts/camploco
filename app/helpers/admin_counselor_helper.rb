@@ -1,0 +1,2 @@
+module AdminCounselorHelper
+end
