@@ -9,11 +9,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 12) do
+ActiveRecord::Schema.define(:version => 14) do
 
   create_table "campers", :force => true do |t|
     t.string   "name"
-    t.string   "rank"
     t.integer  "age"
     t.boolean  "nicoteh"
     t.datetime "created_at"
@@ -23,6 +22,8 @@ ActiveRecord::Schema.define(:version => 12) do
     t.string   "meritbadge1"
     t.string   "meritbadge2"
     t.string   "meritbadge3"
+    t.string   "meritbadge4"
+    t.string   "rank"
   end
 
   create_table "counselors", :force => true do |t|

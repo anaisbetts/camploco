@@ -27,6 +27,7 @@
 		<% 0.upto(3) do |s| %>
 		<th><%= "Session #{s+1}" %></th>
 		<% end %>
+		<th>Misc Session</th>
 	</tr>
 
 	<% for camper in @troop.campers %>
@@ -36,7 +37,7 @@
 		<td><%=h camper.age %></td>
 		<td><%=h(camper.nicoteh ? "Yes" : "No") %></td>
 		
-		<% 0.upto(3) do |s| %>
+		<% 0.upto(4) do |s| %>
 		<td><%=h camper.meritbadge_text(s) %></td>
 		<% end %>
 	</tr>
