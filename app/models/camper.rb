@@ -71,6 +71,10 @@ MeritBadgeSessionNames = {
   3 => "Thursday & Friday (11:00 to 12:45)"
 }
 
+CamperRanks = [
+  'Scout', 'Tenderfoot', '2nd Class', '1st Class', 'Star', 'Life', 'Eagle'
+]
+
 NoneText = "(None)"
 
 class Camper < ActiveRecord::Base
