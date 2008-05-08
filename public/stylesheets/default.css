@@ -13,13 +13,22 @@ hr {
 
 #logo {
 	float: left;
-	width: 273;
-	height: 273;
+	width: 273px;
+	height: 273px;
 }
 
 #header {
 	margin-right: 50px;
 	text-align: right;
+}
+
+.content {
+	position: absolute;
+	width: 70%;
+	left: 15%;
+	background-color: #f8faff;
+	padding: 10px;
+	border: 1px solid #e5e5e5;
 }
 
 /* Janked from scaffold.css */
