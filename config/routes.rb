@@ -17,11 +17,27 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
-#  map.admin 'admin', :controller => 'admin/admin'
+
+  #  map.admin 'admin', :controller => 'admin/admin'
+
+  map.signup '/signup', :controller => 'users', :action => 'new'
+  map.login '/login', :controller => 'sessions', :action => 'new'
+  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.activate '/activate/:id', :controller => 'accounts', :action => 'show'
+  map.forgot_password '/forgot_password', :controller => 'passwords', :action => 'new'
+  map.reset_password '/reset_password/:id', :controller => 'passwords', :action => 'edit'
+  map.change_password '/change_password', :controller => 'accounts', :action => 'edit'
+  map.open_id_complete 'session', :controller => "sessions", :action => "create", :requirements => { :method => :get }
+
+  map.resources :users, :member => { :enable => :put } do |users|
+    users.resource :account
+    users.resources :roles
+  end
+
+  map.resource :session
+  map.resource :password
 
   map.namespace :admin do |admin|
-    # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
     admin.resources :counselors, :active_scaffold => true
     admin.resources :campers, :active_scaffold => true
     admin.resources :troops, :active_scaffold => true
@@ -40,13 +56,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :troops do |troop|
     troop.resources :campers
   end
-
-
-  map.resources :users
-
-  map.signup '/signup', :controller => 'users', :action => 'new'
-  map.login  '/login',  :controller => 'session', :action => 'new'
-  map.logout '/logout', :controller => 'session', :action => 'destroy'
 
   map.connect '/campers/:action', :controller => 'campers'
 
