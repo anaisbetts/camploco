@@ -17,6 +17,7 @@ ZipcodeRegex = /^\d{5}([\-]\d{4})?$/
 
 class Troop < ActiveRecord::Base
   has_many :campers
+  belongs_to :user
 
   validates_presence_of :troopmaster
   validates_presence_of :troopmaster_address

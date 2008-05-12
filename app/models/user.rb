@@ -3,6 +3,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password  
+  has_many :troops
  
   validates_presence_of     :login, :email,              :if => :password_required?
   validates_presence_of     :password,                   :if => :password_required?
