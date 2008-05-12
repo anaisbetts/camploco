@@ -57,9 +57,3 @@ Rails::Initializer.run do |config|
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
 end
-
-
-# XXX: This is to fix a retarded bug; session is the new fish
-Inflector.inflections do |inflect|
-  inflect.irregular 'session', 'session'
-end
