@@ -35,6 +35,8 @@ class SessionsController < ApplicationController
           @user.login = registration['nickname'] || identity_url
           @user.email = registration['email']
           create_open_id_user(@user)
+          self.current_user = @user
+          successful_login
         else
           if @user.enabled == false
             failed_login("Your account has been disabled.")
@@ -52,7 +54,6 @@ class SessionsController < ApplicationController
   def create_open_id_user(user)
     user.save!
     flash[:notice] = "Thanks for signing up!"
-    redirect_back_or_default('/')
   rescue ActiveRecord::RecordInvalid
     flash[:error] = "Someone has signed up with that nickname or email address. Please create
                              another persona for this site."
@@ -86,10 +87,11 @@ class SessionsController < ApplicationController
       flash[:notice] = "Logged in successfully"
       return_to = session[:return_to]
       if return_to.nil?
-        redirect_to user_path(self.current_user)
+        redirect_to '/'
       else
         redirect_to return_to
       end
   end
  
 end
+

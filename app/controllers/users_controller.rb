@@ -23,10 +23,9 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.activate!
     @user.save!
-    #Uncomment to have the user logged in after creating an account - Not Recommended
     self.current_user = @user
   flash[:notice] = "Thanks for signing up!"
-    redirect_to login_path    
+    redirect_back_or_default('/')
   rescue ActiveRecord::RecordInvalid
     flash[:error] = "There was a problem creating your account."
     render :action => 'new'
@@ -40,7 +39,7 @@ class UsersController < ApplicationController
     @user = User.find(current_user)
     if @user.update_attributes(params[:user])
       flash[:notice] = "User updated"
-      redirect_to :action => 'show', :id => current_user
+      redirect_back_or_default('/')
     else
       render :action => 'edit'
     end
