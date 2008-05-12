@@ -1,18 +1,29 @@
 
-<h2>Login with User ID and Password:</h2>
+<h2>Login with your OpenID:</h2>
 <% form_tag session_path do -%>
-<p><label for="login">Login</label><br/>
-<%= text_field_tag 'login' %></p>
- 
-<p><label for="password">Password</label><br/>
-<%= password_field_tag 'password' %><br />
-<label for="remember_me">Remember me:</label>
-<%= check_box_tag 'remember_me' %></p>  
- 
- 
-<p><br /><label for="openid_url">Optional - use your OpenID url:</label><br />
-<%= text_field_tag "openid_url" %></p>
- 
-<p><%= submit_tag 'Log In' %> or <%= link_to "Sign Up", new_user_path %></p>
+  <p>
+    <label>
+      Identity URL:
+      <%= text_field_tag :openid_url, nil, :style => 'width:250px', :id => 'openid_identifier' %>
+
+      <!-- BEGIN ID SELECTOR -->
+      <script type="text/javascript" id="__openidselector" src="https://www.idselector.com/selector/60f33e0693fc33d40644b940aca8b13d62e021c7" charset="utf-8"></script>
+      <!-- END ID SELECTOR -->
+
+    </label>
+    <%= submit_tag :Verify %>
+  </p>
+  <!-- Uncomment this if you want this functionality
+  <p><label for="remember_me">Remember me:</label>
+  <%= check_box_tag 'remember_me' %></p>
+  -->
+  
 <% end -%>
 
+<p>
+Instead of asking you to create another username and password to register your troop, you can use your username from any of several sites like Yahoo! or your AIM screenname. They manage asking you for your password, so we don't store this information. 
+</p>
+
+<p>
+If you don't already use any of these services, or prefer to create a separate account for Lakota Badges, you can create one at <%= link_to 'MyOpenID', 'http://www.myopenid.com' -%>.
+</p>
