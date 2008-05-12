@@ -4,15 +4,16 @@ class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password  
  
-  validates_presence_of     :login, :email
+  validates_presence_of     :login, :email,              :if => :password_required?
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_length_of       :password, :within => 4..40, :if => :password_required?
   validates_confirmation_of :password,                   :if => :password_required?
-  validates_length_of       :login,    :within => 3..40
-  validates_length_of       :email,    :within => 6..100
-  validates_uniqueness_of   :login, :email, :case_sensitive => false
-  validates_format_of       :email, :with => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i
+  validates_length_of       :login,    :within => 3..40, :if => :not_openid?
+  validates_length_of       :email,    :within => 6..100,:if => :not_openid?
+  validates_uniqueness_of   :login, :email, :case_sensitive => false,  :if => :not_openid?
+  validates_format_of       :email, :with => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i,   :if => :not_openid?
+  validates_uniqueness_of   :identity_url,               :if => :is_openid?
  
   has_many :permissions
   has_many :roles, :through => :permissions
@@ -142,11 +143,15 @@ class User < ActiveRecord::Base
   end
       
   def password_required?
-    not is_openid? and (crypted_password.blank? || !password.blank?)
+    not_openid? and (crypted_password.blank? || !password.blank?)
   end
 
   def is_openid?
     not identity_url.blank?
+  end
+
+  def not_openid?
+    not is_openid?
   end
     
   def make_activation_code

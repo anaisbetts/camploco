@@ -21,10 +21,11 @@ class UsersController < ApplicationController
   def create
     cookies.delete :auth_token
     @user = User.new(params[:user])
+    @user.activate!
     @user.save!
     #Uncomment to have the user logged in after creating an account - Not Recommended
-    #self.current_user = @user
-  flash[:notice] = "Thanks for signing up! Please check your email to activate your account before logging in."
+    self.current_user = @user
+  flash[:notice] = "Thanks for signing up!"
     redirect_to login_path    
   rescue ActiveRecord::RecordInvalid
     flash[:error] = "There was a problem creating your account."

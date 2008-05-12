@@ -27,23 +27,16 @@ class SessionsController < ApplicationController
   protected
   
   def open_id_authentication(openid_url)
-    authenticate_with_open_id(openid_url, :required => [:nickname, :email]) do |result, identity_url, registration|
+    authenticate_with_open_id(openid_url) do |result, identity_url, registration|
       if result.successful?
         @user = User.find_or_initialize_by_identity_url(identity_url)
         if @user.new_record?
-          if !registration['nickname'].blank? && !registration['email'].blank?
-            @user.login = registration['nickname']
-            @user.email = registration['email']
-            create_open_id_user(@user)
-          else
-            flash[:error] = "Your persona must include at a minimum a nickname
-                             and valid email address to use OpenID on this site."
-            render :action => 'new'
-          end
+          logger.info registration.to_yaml
+          @user.login = registration['nickname'] || identity_url
+          @user.email = registration['email']
+          create_open_id_user(@user)
         else
-          if @user.activated_at.blank?  
-            failed_login("Your account is not active, please check your email for the activation code.")
-          elsif @user.enabled == false
+          if @user.enabled == false
             failed_login("Your account has been disabled.")
           else
             self.current_user = @user
@@ -58,8 +51,8 @@ class SessionsController < ApplicationController
   
   def create_open_id_user(user)
     user.save!
-    flash[:notice] = "Thanks for signing up! Please check your email to activate your account before logging in."
-    redirect_to login_path
+    flash[:notice] = "Thanks for signing up!"
+    redirect_back_or_default('/')
   rescue ActiveRecord::RecordInvalid
     flash[:error] = "Someone has signed up with that nickname or email address. Please create
                              another persona for this site."
@@ -70,8 +63,6 @@ class SessionsController < ApplicationController
     user = User.authenticate(login, password)
     if user == nil
       failed_login("Your username or password is incorrect.")
-    elsif user.activated_at.blank?  
-      failed_login("Your account is not active, please check your email for the activation code.")
     elsif user.enabled == false
       failed_login("Your account has been disabled.")
     else
