@@ -1,0 +1,4 @@
+@enabled_list.each_with_index do |x, i|
+  f = page["camper_meritbadge#{i}_text"]
+  x ? f.enable : f.disable
+end
