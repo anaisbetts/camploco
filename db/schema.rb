@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20) do
+ActiveRecord::Schema.define(:version => 21) do
 
   create_table "campers", :force => true do |t|
     t.string   "name"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20) do
     t.integer  "session"
     t.string   "troopmaster_state"
     t.integer  "user_id"
+    t.boolean  "hidden"
   end
 
   create_table "users", :force => true do |t|

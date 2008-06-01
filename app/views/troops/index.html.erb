@@ -8,6 +8,7 @@
 	</tr>
 
 	<% for troop in @troops %>
+	<% next if troop.hidden %>
 	<tr>
 		<td><%=h troop.number %></td>
 		<td><%=h troop.troopmaster %></td>

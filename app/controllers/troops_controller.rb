@@ -9,4 +9,18 @@ class TroopsController < ApplicationController
     @troop.user_id = session[:user_id]
     @troop.save
   end
+
+  def destroy 
+    troop = find_resource
+    troop.hidden = true
+    troop.save
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "#{resource_name.humanize} was successfully deleted"
+        redirect_to resources_url
+      end
+      format.js
+      format.xml  { head :ok }
+    end
+  end
 end
