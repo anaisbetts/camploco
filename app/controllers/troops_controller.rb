@@ -16,7 +16,7 @@ class TroopsController < ApplicationController
     troop.save
     respond_to do |format|
       format.html do
-        flash[:notice] = "#{resource_name.humanize} was successfully deleted"
+        flash[:notice] = "#{resource_name.humanize} was successfully deleted. Please Email the camp director if this was incorrect"
         redirect_to resources_url
       end
       format.js
