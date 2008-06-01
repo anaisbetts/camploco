@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 19) do
+ActiveRecord::Schema.define(:version => 20) do
 
   create_table "campers", :force => true do |t|
     t.string   "name"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(:version => 19) do
     t.string   "troopmaster_city"
     t.string   "troopmaster_zipcode"
     t.string   "troopmaster_email"
-    t.integer  "number"
+    t.string   "number"
     t.string   "district"
     t.string   "council"
     t.datetime "created_at"
