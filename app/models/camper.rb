@@ -15,7 +15,8 @@ MeritBadges = {
     "Rifle" => [],
     "Small Boat Sailing" => [],
     "Swimming" => [],
-    "System Management" => [2]
+    "System Management" => [2],
+    "Wilderness Survival" => []
   }, 
 
   1 => {

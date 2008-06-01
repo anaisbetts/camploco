@@ -49,6 +49,8 @@ module AuthenticatedSystem
     #   skip_before_filter :login_required
     #
     def login_required
+      # HACK: Disable login for now till users stop bitching
+      return true
       authorized? || access_denied
     end
     
