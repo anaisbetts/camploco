@@ -4,6 +4,7 @@
 	<tr>
 		<th>Number</th>
 		<th>Scoutmaster</th>
+		<th>Session</th>
 		<th>Email</th>
 	</tr>
 
@@ -12,6 +13,7 @@
 	<tr>
 		<td><%=h troop.number %></td>
 		<td><%=h troop.troopmaster %></td>
+		<td><%=h troop.session_text %></td>
 		<td><%=h troop.troopmaster_email %></td>
 		<td><%= link_to 'Show Report', resource_path(troop) %></td>
 		<td><%= link_to 'Edit Troop', edit_resource_path(troop) %></td>
