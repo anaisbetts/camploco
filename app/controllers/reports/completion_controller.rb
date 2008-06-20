@@ -1,19 +1,22 @@
+require 'fastercsv'
+
 class Reports::CompletionController < ApplicationController
   def index
-    campers = Camper.find(:all).find {|x| x.troop}
+    campers = Camper.find(:all).detect {|x| x.troop}
+    logger.debug campers
 
     # Ditto here
     counselors_hash = {}
     Counselor.find(:all).each {|x| counselors_hash[x.merit_badge] = name}
 
-    stream_csv('attendance_sheet.csv') do |csv|
-      csv << ['Week', 'Troop', 'Name', 'Session Number', 'Merit Badge', 'Counselor']
+    stream_csv('completion_sheet.csv') do |csv|
+      csv << ['Week', 'Troop', 'Name', 'Session Number', 'Merit Badge']
 
-      campers.each do |camper|
-        0.upto(4) do |mb|
-          next unless camper.meritbadge(mb)
-          csv << [week, camper.troop.number, camper.name, mb+1, 
-            camper.meritbadge_text(mb), counselors_hash[camper.meritbadge_text(mb)] || "(None)"]
+      0.upto(4) do |mb|
+        Camper.find(:all).each do |camper|
+          next unless camper.meritbadge(mb) and camper.troop
+          csv << [camper.troop.session, camper.troop.number, camper.name, mb+1, 
+            camper.meritbadge_text(mb)] 
         end
       end
 
