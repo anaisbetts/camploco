@@ -1,11 +1,6 @@
-class Reports::AttendanceController < ApplicationController
+class Reports::CompletionController < ApplicationController
   def index
     campers = Camper.find(:all).find {|x| x.troop}
-
-    # FIXME: There's a clever AR way to do this, but f that noise
-    week_hash = {}
-    campers.each { |x| week_hash[x.troop.session] ? 
-      week_hash[x.troop.session] << x : week_hash[x.troop.session] = [x] }
 
     # Ditto here
     counselors_hash = {}
@@ -14,15 +9,11 @@ class Reports::AttendanceController < ApplicationController
     stream_csv('attendance_sheet.csv') do |csv|
       csv << ['Week', 'Troop', 'Name', 'Session Number', 'Merit Badge', 'Counselor']
 
-      1.upto(4) do |week|
-        next unless week_hash[week]
-
-        week_hash[week].each do |camper|
-          0.upto(4) do |mb|
-            next unless camper.meritbadge(mb)
-            csv << [week, camper.troop.number, camper.name, mb+1, 
-                    camper.meritbadge_text(mb), counselors_hash[camper.meritbadge_text(mb)] || "(None)"]
-          end
+      campers.each do |camper|
+        0.upto(4) do |mb|
+          next unless camper.meritbadge(mb)
+          csv << [week, camper.troop.number, camper.name, mb+1, 
+            camper.meritbadge_text(mb), counselors_hash[camper.meritbadge_text(mb)] || "(None)"]
         end
       end
 

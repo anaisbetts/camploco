@@ -46,6 +46,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :reports do |reports|
     reports.connect 'attendance', :controller => 'attendance', :action => 'index'
+    reports.connect 'completion', :controller => 'completion', :action => 'index'
   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
