@@ -6,6 +6,7 @@ MeritBadges = {
     "Basketry" => [],
     "BSA Lifeguard" => [1,2,3],
     "Canoeing" => [],
+    "Climbing" => [],
     "COPE" => [1],
     "Emergency Prep" => [],
     "Leatherwork" => [],
@@ -13,9 +14,10 @@ MeritBadges = {
     "Nicoteh" => [1,2],
     "Pioneering" => [1],
     "Rifle" => [],
+    "Shotgun" => [],
     "Small Boat Sailing" => [],
     "Swimming" => [],
-    "System Management" => [2],
+    "Wilderness Management" => [2]
     "Wilderness Survival" => []
   }, 
 
@@ -23,12 +25,14 @@ MeritBadges = {
     "Archery" => [],
     "Camping" => [],
     "Canoeing" => [],
-    "Creature Studies" => [3],
+    "Cinematography" => [],
+    "Climbing" => [],
+    "Earth Studies" => [3],
     "Environmental Science" => [],
     "First Aid" => [3],
     "Leatherwork" => [],
     "Lifesaving" => [],
-    "Photojournalism" => [],
+    "Rifle" => [],
     "Rowing" => [],
     "Shotgun" => [],
     "Swimming" => [],
@@ -49,6 +53,7 @@ MeritBadges = {
     "Orienteering" => [3],
     "Rifle" => [],
     "Rowing" => [],
+    "Shotgun" => []
     "Swimming" => []
   }, 
 
@@ -59,6 +64,7 @@ MeritBadges = {
     "Hiking and Backpacking" => [],
     "Lifesaving" => [],
     "Pottery" => [],
+    "Rifle" => [],
     "Shotgun" => [],
     "Small Boat Sailing" => [],
     "Space Exploration" => [],
@@ -67,11 +73,14 @@ MeritBadges = {
   }, 
 
   4 => {
-    "Waterskiing" => [],
-    "Cooking" => [],
-    "Forestry" => [],
-    "Geology" => [],
     "Bird Study" => [],
+    "Cooking" => [],
+    "Computers" => [],
+    "Fish and Wildlife Management" => [],
+    "Insect Study" => [],
+    "Mammal Study" => [],
+    "Reptile and Amphibian Study" => [],
+    "Soil and Water Conservation" => [],
     "Weather" => []
   }
 }

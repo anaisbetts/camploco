@@ -1,15 +1,15 @@
 AvailableSessionsAsDate = {
-  1 => Date.parse("2008-06-24"), 
-  2 => Date.parse("2008-07-01"),
-  3 => Date.parse("2008-07-08"), 
-  4 => Date.parse("2008-07-15") 
+  1 => Date.parse("2009-06-28"), 
+  2 => Date.parse("2009-07-05"),
+  3 => Date.parse("2009-07-12"), 
+  4 => Date.parse("2009-07-25") 
 }
 
 AvailableSessionsAsText = {
-  1 => "Week 1: June 24th - June 30th",
-  2 => "Week 2: July 1st - July 7th",
-  3 => "Week 3: July 8th - July 14th",
-  4 => "Week 4: July 15th - July 21th"
+  1 => "Week 1: June 28th - July 4th",
+  2 => "Week 2: July 5th - July 11th",
+  3 => "Week 3: July 12th - July 18th",
+  4 => "Week 4: July 25th - July 25th"
 }
 
 EmailRegex = /[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/

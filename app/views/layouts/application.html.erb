@@ -15,12 +15,14 @@
 
 <p align="right">
 
+<!--
 <% if logged_in? %>
 Logged in as <%= link_to h(current_user.login), user_path(current_user) %><br/>
 <%= link_to 'Log Out', logout_url %>
 <% else %>
 <%= link_to 'Log In', new_session_path %>
 <% end %>
+-->
 
 </p>
 
@@ -28,7 +30,7 @@ Logged in as <%= link_to h(current_user.login), user_path(current_user) %><br/>
 	<%= image_tag("camploco.gif") %>
 </p>
 
-<h1 align="center">Camp Lakota 2008<br/>
+<h1 align="center">Camp Lakota 2009<br/>
 Merit Badge Signup<br/>
 </h1>
 
