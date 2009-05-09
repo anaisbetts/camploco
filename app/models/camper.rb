@@ -17,8 +17,8 @@ MeritBadges = {
     "Shotgun" => [],
     "Small Boat Sailing" => [],
     "Swimming" => [],
-    "Wilderness Management" => [2]
-    "Wilderness Survival" => []
+    "Wilderness Management" => [2],
+    "Wilderness Survival" => [],
   }, 
 
   1 => {
@@ -36,7 +36,7 @@ MeritBadges = {
     "Rowing" => [],
     "Shotgun" => [],
     "Swimming" => [],
-    "Woodcarving" => []
+    "Woodcarving" => [],
   }, 
 
   2 => {
@@ -53,8 +53,8 @@ MeritBadges = {
     "Orienteering" => [3],
     "Rifle" => [],
     "Rowing" => [],
-    "Shotgun" => []
-    "Swimming" => []
+    "Shotgun" => [],
+    "Swimming" => [],
   }, 
 
   3 => {
@@ -81,7 +81,7 @@ MeritBadges = {
     "Mammal Study" => [],
     "Reptile and Amphibian Study" => [],
     "Soil and Water Conservation" => [],
-    "Weather" => []
+    "Weather" => [],
   }
 }
 
