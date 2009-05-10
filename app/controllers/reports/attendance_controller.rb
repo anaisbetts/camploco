@@ -1,10 +1,10 @@
+require 'fastercsv'
+
 class Reports::AttendanceController < ApplicationController
   def index
-    campers = Camper.find(:all).find {|x| x.troop}
-
     # FIXME: There's a clever AR way to do this, but f that noise
     week_hash = {}
-    campers.each { |x| week_hash[x.troop.session] ? 
+    Camper.find(:all).each { |x| next unless x.troop; week_hash[x.troop.session] ?
       week_hash[x.troop.session] << x : week_hash[x.troop.session] = [x] }
 
     # Ditto here

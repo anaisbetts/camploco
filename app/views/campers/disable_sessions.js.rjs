@@ -1,4 +1,4 @@
 @enabled_list.each_with_index do |x, i|
-  f = page["camper_meritbadge#{i}_text"]
+  f = page["camper_meritbadge#{i}_text".to_sym]
   x ? f.enable : f.disable
 end
