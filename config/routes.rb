@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
 
-  map.resources :users
+  map.resources :users 
   map.resource :session
 
   map.namespace :admin do |admin|
@@ -43,13 +43,11 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "welcome"
 
   # See how all your routes lay out with "rake routes"
-
   map.resources :troops do |troop|
     troop.resources :campers
   end
 
   map.connect '/campers/:action', :controller => 'campers'
-
 
   # Install the default routes as the lowest priority.
   #map.connect ':controller/:action/:id'
