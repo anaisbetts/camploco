@@ -69,3 +69,9 @@ unless '1.9'.respond_to?(:force_encoding)
   end
 end
 
+
+class ActionView::Base
+  def label_tag(name, text = nil, options = {})
+    content_tag :label, text || name.to_s.humanize, { "for" => name }.update(options.stringify_keys)
+  end
+end

@@ -20,28 +20,18 @@ ActionController::Routing::Routes.draw do |map|
 
   #  map.admin 'admin', :controller => 'admin/admin'
 
-  map.signup '/signup', :controller => 'users', :action => 'new'
-  map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.activate '/activate/:id', :controller => 'accounts', :action => 'show'
-  map.forgot_password '/forgot_password', :controller => 'passwords', :action => 'new'
-  map.reset_password '/reset_password/:id', :controller => 'passwords', :action => 'edit'
-  map.change_password '/change_password', :controller => 'accounts', :action => 'edit'
-  map.open_id_complete 'session', :controller => "sessions", :action => "create", :requirements => { :method => :get }
+  map.login '/login', :controller => 'sessions', :action => 'new'
+  map.register '/register', :controller => 'users', :action => 'create'
+  map.signup '/signup', :controller => 'users', :action => 'new'
 
-  map.resources :users, :member => { :enable => :put } do |users|
-    users.resource :account
-    users.resources :roles
-  end
-
+  map.resources :users
   map.resource :session
-  map.resource :password
 
   map.namespace :admin do |admin|
     admin.resources :counselors, :active_scaffold => true
     admin.resources :campers, :active_scaffold => true
     admin.resources :troops, :active_scaffold => true
-    admin.resources :users, :active_scaffold => true
   end
 
   map.namespace :reports do |reports|
@@ -59,6 +49,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.connect '/campers/:action', :controller => 'campers'
+
 
   # Install the default routes as the lowest priority.
   #map.connect ':controller/:action/:id'
