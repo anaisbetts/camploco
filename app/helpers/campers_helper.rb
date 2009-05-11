@@ -1,2 +1,0 @@
-module CampersHelper
-end
