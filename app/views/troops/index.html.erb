@@ -1,5 +1,9 @@
 <h1>Registered Troops</h1>
 
+<h3>
+	<%= link_to 'Register a new troop', new_resource_path %>
+</h3>
+
 <table id="data" class="sortable resizable">
 	<tr>
 		<th>Number</th>
@@ -27,5 +31,3 @@
 <script language="javascript"> TableKit.Sortable.init("data"); </script>
 
 <br />
-
-<%= link_to 'New troop', new_resource_path %>
