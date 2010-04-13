@@ -91,12 +91,12 @@ MeritBadges = {
   },
 
   5 => {
-    "Cooking" => []
-    "Cycling" => []
-    "Forestry" => []
-    "Geology" => []
-    "Nature" => []
-    "Weather" => []
+    "Cooking" => [],
+    "Cycling" => [],
+    "Forestry" => [],
+    "Geology" => [],
+    "Nature" => [],
+    "Weather" => [],
   }, 
 }
 
