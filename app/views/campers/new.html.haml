@@ -1,0 +1,6 @@
+%h1
+  New camper for Troop
+  = h @troop.number
+= error_messages_for :camper
+= render :partial => 'camper_form'
+= link_to 'Back to ', resources_path, :action => :index

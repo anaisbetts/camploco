@@ -1,0 +1,75 @@
+%h1
+  Overview of Troop
+  = h @troop.number
+  \:
+%h2
+  Troop Information
+%p
+  %b
+    Scoutmaster:
+  = h @troop.troopmaster
+  %br
+  %b
+    Scoutmaster Address:
+  = h "#{@troop.troopmaster_address}, #{@troop.troopmaster_city}, #{@troop.troopmaster_state} #{@troop.troopmaster_zipcode}"
+  %br
+  %b
+    Scoutmaster Email:
+  = h @troop.troopmaster_email
+  %br
+  %b
+    Troop Number:
+  = h @troop.number
+  %br
+  %b
+    District:
+  = h @troop.district
+  %br
+  %b
+    Council:
+  = h @troop.council
+  %br
+  %b
+    Session:
+  = h @troop.session_text
+  %br
+%p
+  %br
+%h2
+  Registered Campers
+%table#data.sortable.resizable
+  %tr
+    %th
+      Name
+    %th
+      Rank
+    %th
+      Age
+    %th
+      Nicoteh
+    - 0.upto(3) do |s|
+      %th
+        = "Session #{s+1}"
+    %th
+      Misc Session
+  - for camper in @troop.campers
+    %tr
+      %td
+        = h camper.name
+      %td
+        = h camper.rank
+      %td
+        = h camper.age
+      %td
+        = h(camper.nicoteh ? "Yes" : "No")
+      - 0.upto(4) do |s|
+        %td
+          = h camper.meritbadge_text(s)
+%script{ :language => "javascript" }
+  TableKit.Sortable.init("data");
+%br
+= link_to 'Edit Campers...', resource_campers_path(@troop)
+%br
+= link_to 'Edit troop details', edit_resource_path(@troop)
+|
+= link_to 'Back', troops_path

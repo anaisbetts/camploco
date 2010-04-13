@@ -1,0 +1,37 @@
+- form_for_resource :html => {:id => "mainform"} do |f|
+  %p
+    %b
+      Name
+    %br
+    = f.text_field :name
+  %p
+    %b
+      Rank
+    %br
+    = select('camper', 'rank', CamperRanks)
+  %p
+    %b
+      Age
+    %br
+    = f.text_field :age
+  %p
+    %b
+      Participating in Nicoteh:
+    = f.check_box :nicoteh
+  %p
+    %br
+    %br
+  - 0.upto 4 do |s|
+    %h3
+      Session
+      = s+1
+      \:
+      = Camper.merit_badge_slot_names[s]
+    = select("camper", "meritbadge#{s}_text", Camper.merit_badge_entries(s))
+  %p
+    %i
+      Note:
+    If you would like to sign up for multiple activities for independent study, please contact the camp director.
+  = observe_form "mainform", :url => {:controller => 'campers', :action => 'disable_sessions'}
+  %p
+    = f.submit "Create"

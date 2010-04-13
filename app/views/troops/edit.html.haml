@@ -1,0 +1,6 @@
+%h1
+  Editing Troop
+  = h @troop.number
+= error_messages_for :troop
+= render :partial => 'troop_form'
+= link_to 'Back to Troop List', troops_path

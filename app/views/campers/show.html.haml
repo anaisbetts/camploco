@@ -1,0 +1,31 @@
+%p
+  %b
+    Name:
+  = h @camper.name
+%p
+  %b
+    Rank:
+  = h @camper.rank
+%p
+  %b
+    Age:
+  = h @camper.age
+%p
+  %b
+    Nicoteh:
+  = h @camper.nicoteh
+%p
+  - 0.upto 3 do |s|
+    %p
+      %b
+        Session
+        = s+1
+        \:
+      = h @camper.meritbadge_text(s)
+  %p
+    %b
+      Misc Session:
+    = h @camper.meritbadge_text(4)
+= link_to 'Edit', edit_resource_path
+|
+= link_to 'Back', resources_path

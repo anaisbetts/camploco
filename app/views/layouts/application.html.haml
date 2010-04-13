@@ -1,0 +1,29 @@
+!!!
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
+    %title
+      Camp Lakota Merit Badge Signup Form
+    = stylesheet_link_tag 'default'
+    = stylesheet_link_tag 'tablekit'
+    = javascript_include_tag :defaults
+    = javascript_include_tag 'fastinit'
+    = javascript_include_tag 'tablekit'
+  %body
+    %p{ :align => "right" }
+      = render :partial => "users/user_bar"
+    %p{ :align => "center" }
+      = image_tag("camploco.gif")
+    %h1{ :align => "center" }
+      Camp Lakota 2009
+      %br
+      Merit Badge Signup
+      %br
+    %p{ :style => "color: green" }
+      = flash[:notice]
+    %p{ :style => "color: red" }
+      = flash[:error]
+    %p
+      %br
+    .content
+      = yield

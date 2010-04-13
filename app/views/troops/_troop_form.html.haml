@@ -1,0 +1,53 @@
+- form_for_resource do |f|
+  %h2
+    Troop Information
+  %p
+    %b
+      Troop Number
+    %br
+    = f.text_field :number
+  %p
+    %b
+      District
+    %br
+    = f.text_field :district
+  %p
+    %b
+      Council
+    %br
+    = f.text_field :council
+  = select("troop", "session_text", AvailableSessionsAsText.values)
+  %h2
+    Scoutmaster Information:
+  %p
+    %b
+      Name
+    %br
+    = f.text_field :troopmaster
+  %p
+    %b
+      Email Address
+    %br
+    = f.text_field :troopmaster_email
+  %p
+    %b
+      Street Address
+    %br
+    = f.text_field :troopmaster_address
+  %p
+    %b
+      City
+    %br
+    = f.text_field :troopmaster_city
+  %p
+    %b
+      State
+    %br
+    = select("troop", "troopmaster_state", US_States)
+  %p
+    %b
+      Zipcode
+    %br
+    = f.text_field :troopmaster_zipcode
+  %p
+    = f.submit "Save"

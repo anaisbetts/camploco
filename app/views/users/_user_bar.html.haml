@@ -1,0 +1,15 @@
+- if logged_in?
+  %span#user-bar-greeting
+    Logged in as
+    = link_to_current_user :content_method => :login
+  %span#user-bar-action
+    (
+    = link_to "Log out", logout_path, { :title => "Log out" }
+    )
+- else
+  %span#user-bar-greeting
+    = link_to_login_with_IP 'Not logged in', :style => 'border: none;'
+  %span#user-bar-action
+    = link_to "Log in",  login_path,  { :title => "Log in" }
+    \/
+    = link_to "Sign up", signup_path, { :title => "Create an account" }

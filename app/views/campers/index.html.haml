@@ -1,0 +1,46 @@
+%h1
+  Campers for Troop
+  = h @troop.number
+%table#data.sortable.resizable
+  %tr
+    %th
+      Name
+    %th
+      Rank
+    %th
+      Age
+    %th
+      Nicoteh
+    - 0.upto(3) do |s|
+      %th
+        = "Session #{s+1}"
+    %th
+      Misc Session
+  - for camper in @campers
+    %tr
+      %td
+        = h camper.name
+      %td
+        = h camper.rank
+      %td
+        = h camper.age
+      %td
+        = h(camper.nicoteh ? "Yes" : "No")
+      - 0.upto(4) do |s|
+        %td
+          = h camper.meritbadge_text(s)
+      %td
+        = link_to 'Show', resource_path(camper)
+      %td
+        = link_to 'Edit', edit_resource_path(camper)
+      %td
+        = link_to 'Delete', resource_path(camper), :confirm => 'Are you sure?', :method => :delete
+
+%script{ :language => "javascript" }
+  TableKit.Sortable.init("data");
+%br
+= link_to 'Add a camper', new_resource_path
+%br
+%p
+= link_to 'Back to troop', enclosing_resource_path
+%br
