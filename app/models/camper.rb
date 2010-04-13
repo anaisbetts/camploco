@@ -88,7 +88,16 @@ MeritBadges = {
     "Reptile and Amphibian Study" => [],
     "Soil and Water Conservation" => [],
     "Weather" => [],
-  }
+  },
+
+  5 => {
+    "Cooking" => []
+    "Cycling" => []
+    "Forestry" => []
+    "Geology" => []
+    "Nature" => []
+    "Weather" => []
+  }, 
 }
 
 MeritBadgeSessionNames = {
@@ -96,7 +105,8 @@ MeritBadgeSessionNames = {
   1 => "Monday & Tuesday (11:00 to 12:45)", 
   2 => "Thursday & Friday (9:00 to 10:45)", 
   3 => "Thursday & Friday (11:00 to 12:45)",
-  4 => "Misc / Independent Study"
+  4 => "Misc / Independent Study",
+  5 => "Outbounds",
 }
 
 CamperRanks = [
@@ -113,19 +123,27 @@ class Camper < ActiveRecord::Base
   validates_presence_of :rank
   validates_numericality_of :troop_id, :greater_than => 0
 
-  validates_each :meritbadge0, :meritbadge1, :meritbadge2, :meritbadge3, :meritbadge4 do |record, attr, value|
-    i = nil
-    throw "Attribute is invalid" unless (i = Camper.index_from_name(attr.to_s))
-    
-    if value and not record.slot_enabled?(i)
-      record.errors.add "Session #{i+1} is already taken because of your selection on Session #{record.disabling_slot_number(i)+1} - "
-    end
-
+  validates_each :meritbadge0, :meritbadge1, :meritbadge2, :meritbadge3 do |record, attr, value|
+    i = get_merit_badge_and_validate(record, attr, value)
     record.errors.add "Session 1 isn't filled - " if i == 0 and not value
   end
 
+  validates_each :meritbadge4 do |record, attr, value|
+    value.split('|').each {|x| get_merit_badge_and_validate(record, attr, x)}
+  end
+
+  def self.get_merit_badge_index_and_validate(record, attr, value)
+    i = nil
+    throw "Attribute is invalid" unless (i = Camper.index_from_name(attr.to_s))
+
+    if value and not record.slot_enabled?(i)
+      record.errors.add "Session #{i+1} is already taken because of your selection on Session #{record.disabling_slot_number(i)+1} - "
+    end
+    i
+  end
+
   def self.merit_badge_slot_names
-    (0..4).map {|x| MeritBadgeSessionNames[x]}
+    (0..5).map {|x| MeritBadgeSessionNames[x]}
   end
 
   def self.merit_badge_entries(slot)
@@ -173,6 +191,7 @@ class Camper < ActiveRecord::Base
     return self.meritbadge2 if x == 2
     return self.meritbadge3 if x == 3
     return self.meritbadge4 if x == 4
+    return self.meritbadge5 if x == 5
     return nil
   end
 
@@ -184,6 +203,7 @@ class Camper < ActiveRecord::Base
     return self.meritbadge2_text if x == 2
     return self.meritbadge3_text if x == 3
     return self.meritbadge4_text if x == 4
+    return self.meritbadge5_text if x == 5
     return nil
   end
 
@@ -210,6 +230,10 @@ class Camper < ActiveRecord::Base
     self.meritbadge4 || NoneText
   end
 
+  def meritbadge5_text
+    self.meritbadge5 || NoneText
+  end
+
   def meritbadge0_text=(x)
     self.meritbadge0 = (x != NoneText ? x : nil)
   end
@@ -230,4 +254,7 @@ class Camper < ActiveRecord::Base
     self.meritbadge4 = (x != NoneText ? x : nil)
   end
 
+  def meritbadge5_text=(x)
+    self.meritbadge5 = (x != NoneText ? x : nil)
+  end
 end
