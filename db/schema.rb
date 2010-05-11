@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 25) do
     t.string   "meritbadge4"
     t.string   "rank"
     t.string   "meritbadge5"
-    t.string   "meritbadge5_backup"
+    t.string   "meritbadge6"
   end
 
   create_table "counselors", :force => true do |t|

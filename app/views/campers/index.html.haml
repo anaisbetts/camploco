@@ -11,11 +11,11 @@
       Age
     %th
       Nicoteh
-    - 0.upto(3) do |s|
+    - 1.upto(5) do |s|
       %th
-        = "Session #{s+1}"
+        = "Session #{s}"
     %th
-      Misc Session
+      Outbound
   - for camper in @campers
     %tr
       %td
@@ -29,6 +29,8 @@
       - 0.upto(4) do |s|
         %td
           = h camper.meritbadge_text(s)
+      %td
+        = h "#{camper.meritbadge_text(5)} / #{camper.meritbadge_text(6)}"
       %td
         = link_to 'Show', resource_path(camper)
       %td

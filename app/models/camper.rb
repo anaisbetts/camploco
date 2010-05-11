@@ -98,6 +98,16 @@ MeritBadges = {
     "Nature" => [],
     "Weather" => [],
   }, 
+
+  6 => {
+    "Cooking" => [],
+    "Cycling" => [],
+    "Forestry" => [],
+    "Geology" => [],
+    "Nature" => [],
+    "Weather" => [],
+  }, 
+
 }
 
 MeritBadgeSessionNames = {
@@ -107,6 +117,7 @@ MeritBadgeSessionNames = {
   3 => "Thursday & Friday (11:00 to 12:45)",
   4 => "Misc / Independent Study",
   5 => "Outbounds",
+  6 => "Outbounds Backup Choice",
 }
 
 CamperRanks = [
@@ -124,12 +135,18 @@ class Camper < ActiveRecord::Base
   validates_numericality_of :troop_id, :greater_than => 0
 
   validates_each :meritbadge0, :meritbadge1, :meritbadge2, :meritbadge3 do |record, attr, value|
-    i = get_merit_badge_and_validate(record, attr, value)
+    i = get_merit_badge_index_and_validate(record, attr, value)
     record.errors.add "Session 1 isn't filled - " if i == 0 and not value
   end
 
   validates_each :meritbadge4 do |record, attr, value|
-    value.split('|').each {|x| get_merit_badge_and_validate(record, attr, x)}
+    arr = (value ? value.split('|') : [nil])
+    arr.each {|x| get_merit_badge_index_and_validate(record, attr, x)}
+  end
+
+  validates_each :meritbadge6 do |record, attr, value|
+    is_invalid = (record.meritbadge(6) and record.meritbadge(5) == record.meritbadge(6))
+    record.errors.add "Backup Outbounds choice must not be the same - " if is_invalid
   end
 
   def self.get_merit_badge_index_and_validate(record, attr, value)
@@ -143,7 +160,7 @@ class Camper < ActiveRecord::Base
   end
 
   def self.merit_badge_slot_names
-    (0..5).map {|x| MeritBadgeSessionNames[x]}
+    (0..6).map {|x| MeritBadgeSessionNames[x]}
   end
 
   def self.merit_badge_entries(slot)
@@ -192,6 +209,7 @@ class Camper < ActiveRecord::Base
     return self.meritbadge3 if x == 3
     return self.meritbadge4 if x == 4
     return self.meritbadge5 if x == 5
+    return self.meritbadge6 if x == 6
     return nil
   end
 
@@ -204,6 +222,7 @@ class Camper < ActiveRecord::Base
     return self.meritbadge3_text if x == 3
     return self.meritbadge4_text if x == 4
     return self.meritbadge5_text if x == 5
+    return self.meritbadge6_text if x == 6
     return nil
   end
 
@@ -234,6 +253,10 @@ class Camper < ActiveRecord::Base
     self.meritbadge5 || NoneText
   end
 
+  def meritbadge6_text
+    self.meritbadge6 || NoneText
+  end
+
   def meritbadge0_text=(x)
     self.meritbadge0 = (x != NoneText ? x : nil)
   end
@@ -256,5 +279,9 @@ class Camper < ActiveRecord::Base
 
   def meritbadge5_text=(x)
     self.meritbadge5 = (x != NoneText ? x : nil)
+  end
+
+  def meritbadge6_text=(x)
+    self.meritbadge6 = (x != NoneText ? x : nil)
   end
 end
