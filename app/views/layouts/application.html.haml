@@ -10,6 +10,7 @@
     = javascript_include_tag 'fastinit'
     = javascript_include_tag 'tablekit'
   %body
+    = '<!--[if lte IE 6]><script src="/javascripts/ie6/warning.js"></script><script>window.onload=function(){e("/javascripts/ie6/")}</script><![endif]-->'
     %p{ :align => "right" }
       = render :partial => "users/user_bar"
     %p{ :align => "center" }
