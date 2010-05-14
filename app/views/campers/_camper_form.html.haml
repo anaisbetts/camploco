@@ -27,9 +27,12 @@
       = s+1
       \:
       = Camper.merit_badge_slot_names[s]
-    %h3
-      = Camper.merit_badge_slot_names[6]
     = select("camper", "meritbadge#{s}_text", Camper.merit_badge_entries(s))
+
+  %h3
+    = Camper.merit_badge_slot_names[6]
+  = select("camper", "meritbadge#{6}_text", Camper.merit_badge_entries(6))
+
   = observe_form "mainform", :url => {:controller => 'campers', :action => 'disable_sessions'}
   %p
     = f.submit "Create"
