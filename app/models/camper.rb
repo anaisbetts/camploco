@@ -94,6 +94,7 @@ MeritBadges = {
     "En-Sa-Wac-Sa (min. age 12)" => [],
     "Hiking" => [],
     "Kayaking (min. age 13)" => [],
+    "Nicoteh" => [],
     "Photojournalism" => [],
     "Rendezvous (min. age 13)" => [],
     "Sports" => [],
