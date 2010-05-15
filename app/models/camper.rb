@@ -105,13 +105,9 @@ MeritBadges = {
     "C.O.P.E (min. age 14)" => [],
     "Cycling" => [],
     "Eco Exploration" => [],
-    "En-Sa-Wac-Sa (min. age 12)" => [],
     "Hiking" => [],
-    "Kayaking (min. age 13)" => [],
     "Photojournalism" => [],
-    "Rendezvous (min. age 13)" => [],
     "Sports" => [],
-    "Voyageur (min. age 12)" => [],
     "X-treme" => [],
   },
 }
