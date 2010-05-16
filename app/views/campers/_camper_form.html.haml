@@ -17,13 +17,21 @@
   %p
     %br
     %br
-  - 0.upto 4 do |s|
+  - 0.upto 3 do |s|
     %h3
       Session
       = s+1
       \:
       = Camper.merit_badge_slot_names[s]
     = select("camper", "meritbadge#{s}_text", Camper.merit_badge_entries(s))
+
+  %h3
+    Session 5: 
+    = Camper.merit_badge_slot_names[4]
+  - Camper.merit_badge_entries(4).each_with_index do |x, i|
+    = check_box("camper", "meritbadge4_choice#{i}")
+    = x
+    %br
 
   - 5.upto 6 do |s|
     %h3

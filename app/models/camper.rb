@@ -152,6 +152,16 @@ class Camper < ActiveRecord::Base
     record.errors.add "Backup Outbounds choice must not be the same - " if is_invalid
   end
 
+  before_save do |record|
+    vals = []
+    merit_badge_entries(4).each_with_index do |x, i|
+      b = record.send("meritbadge4_choice#{i}")
+      puts "meritbadge4_choice#{i} = #{b}"
+      vals << x if b.to_s != "0"
+    end
+    record.meritbadge4_text = vals.join("|")
+  end
+
   def self.get_merit_badge_index_and_validate(record, attr, value)
     i = nil
     throw "Attribute is invalid" unless (i = Camper.index_from_name(attr.to_s))
@@ -167,6 +177,7 @@ class Camper < ActiveRecord::Base
   end
 
   def self.merit_badge_entries(slot)
+    return MeritBadges[slot].keys.sort if slot == 4
     [NoneText] + MeritBadges[slot].keys.sort
   end
 
@@ -232,6 +243,13 @@ class Camper < ActiveRecord::Base
   # FIXME: There's probably a clever metaprogramming way to do this
   # Map nil <=> '(None)'
 
+  attr_accessor :meritbadge4_choice0
+  attr_accessor :meritbadge4_choice1
+  attr_accessor :meritbadge4_choice2
+  attr_accessor :meritbadge4_choice3
+  attr_accessor :meritbadge4_choice4
+  attr_accessor :meritbadge4_choice5
+
   def meritbadge0_text
     self.meritbadge0 || NoneText
   end
@@ -249,7 +267,7 @@ class Camper < ActiveRecord::Base
   end
 
   def meritbadge4_text
-    self.meritbadge4 || NoneText
+    (self.meritbadge4 || NoneText).split("|").join(", ")
   end
 
   def meritbadge5_text

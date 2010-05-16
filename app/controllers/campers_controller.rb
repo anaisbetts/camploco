@@ -12,9 +12,8 @@ class CampersController < ApplicationController
     fake.meritbadge1_text = c["meritbadge1_text"]
     fake.meritbadge2_text = c["meritbadge2_text"]
     fake.meritbadge3_text = c["meritbadge3_text"]
-    fake.meritbadge4_text = c["meritbadge4_text"]
 
-    @enabled_list = (0..4).collect {|x| fake.slot_enabled? x}
+    @enabled_list = (0..3).collect {|x| fake.slot_enabled? x}
 
     respond_to do |wants|
       wants.js
