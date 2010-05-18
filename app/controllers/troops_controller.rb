@@ -7,7 +7,7 @@ class TroopsController < ApplicationController
   def find_resources
     user = User.find_by_id(session[:user_id])
     return Troop.find(:all) if user and user.is_admin
-    Troop.find_all_by_user_id()
+    Troop.find_all_by_user_id(user.id)
   end
 
   def hack_in_user_id
