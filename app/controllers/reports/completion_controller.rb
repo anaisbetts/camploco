@@ -1,6 +1,8 @@
 require 'fastercsv'
 
 class Reports::CompletionController < ApplicationController
+  before_filter :login_required
+
   def index
     campers = Camper.find(:all).detect {|x| x.troop}
     logger.debug campers
@@ -12,7 +14,7 @@ class Reports::CompletionController < ApplicationController
     stream_csv('completion_sheet.csv') do |csv|
       csv << ['Week', 'Troop', 'Name', 'Session Number', 'Merit Badge']
 
-      0.upto(4) do |mb|
+      0.upto(5) do |mb|
         Camper.find(:all).each do |camper|
           next unless camper.meritbadge(mb) and camper.troop
           csv << [camper.troop.session, camper.troop.number, camper.name, mb+1, 
