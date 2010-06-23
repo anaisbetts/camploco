@@ -14,7 +14,7 @@ class Reports::CompletionController < ApplicationController
     stream_csv('completion_sheet.csv') do |csv|
       csv << ['Week', 'Troop', 'Name', 'Session Number', 'Merit Badge']
 
-      0.upto(5) do |mb|
+      0.upto(6) do |mb|
         Camper.find(:all).each do |camper|
           next unless camper.meritbadge(mb) and camper.troop
           csv << [camper.troop.session, camper.troop.number, camper.name, mb+1, 

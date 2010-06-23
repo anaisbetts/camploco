@@ -20,7 +20,7 @@ class Reports::AttendanceController < ApplicationController
         next unless week_hash[week]
 
         week_hash[week].each do |camper|
-          0.upto(5) do |mb|
+          0.upto(6) do |mb|
             next unless camper.meritbadge(mb)
             csv << [week, camper.troop.number, camper.name, mb+1, 
                     camper.meritbadge_text(mb), counselors_hash[camper.meritbadge_text(mb)] || "(None)"]
